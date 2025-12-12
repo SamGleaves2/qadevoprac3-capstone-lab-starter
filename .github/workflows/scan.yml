@@ -10,11 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
     - name: validate
       run: |
         curl -L "$(curl -s https://api.github.com/repos/tenable/terrascan/releases/latest \
         | grep -o -E "https://.+?_Linux_x86_64.tar.gz")" > terrascan.tar.gz
         tar -xf terrascan.tar.gz terrascan && rm terrascan.tar.gz
         sudo install terrascan /usr/local/bin && rm terrascan
-        cd helm
-        terrascan scan -i helm
+        terrascan scan -i helm -d helm
