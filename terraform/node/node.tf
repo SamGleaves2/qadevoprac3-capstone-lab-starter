@@ -11,7 +11,7 @@ resource "google_compute_instance" "k8s_node" {
       }
     }
 
-    metadata_startup_script = file("${path.module}/../worker.sh")
+    metadata_startup_script = file("${path.module}/../controller.sh")
 
     network_interface {
       network = "default"
