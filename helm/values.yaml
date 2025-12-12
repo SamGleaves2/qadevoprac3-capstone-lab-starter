@@ -1,6 +1,6 @@
 app:
   version: latest
-  repo: qa-tech-training
+  repo: ghcr.io/qa-tech-training/qadevoprac3-capstone-lab-starter
 
 service:
   port: 3000

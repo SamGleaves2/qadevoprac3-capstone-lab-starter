@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: prometheus-example-app
-        image: quay.io/brancz/prometheus-example-app:v0.3.0
+        image: "{{ .Values.app.repo }}:{{ .Values.app.version }}"
         ports:
         - name: web
-          containerPort: 8080
+          containerPort: {{ .Values.service.port }}
