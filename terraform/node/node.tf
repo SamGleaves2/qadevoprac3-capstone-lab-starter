@@ -11,7 +11,12 @@ resource "google_compute_instance" "k8s_node" {
       }
     }
 
-    metadata_startup_script = var.role == "controller" ? file("${path.module}/../controller.sh") : file("${path.module}/../worker.sh")
+    metadata_startup_script = <<EOF
+    #!/bin/bash -ex
+    export NfsPublicIp=${var.nfs_ip}
+    export K3sPublicIp=${var.k3s_ip}
+    ${file("${path.root}/${var.role}.sh")}
+    EOF
 
     network_interface {
       network = "default"
