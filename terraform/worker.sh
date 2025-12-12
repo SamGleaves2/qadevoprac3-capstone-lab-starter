@@ -1,3 +1,6 @@
+#!/bin/bash -ex
+export NfsPublicIp=${var.nfs_ip}
+export K3sPublicIp=${var.k3s_ip}
 sleep 90
 apt-get update
 apt-get install -y git nfs-common

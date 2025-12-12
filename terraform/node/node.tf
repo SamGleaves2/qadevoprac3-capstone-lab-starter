@@ -11,12 +11,7 @@ resource "google_compute_instance" "k8s_node" {
       }
     }
 
-    metadata_startup_script = <<EOF
-    #!/bin/bash -ex
-    export NfsPublicIp=${var.nfs_ip}
-    export K3sPublicIp=${var.k3s_ip}
-    # TODO: interpolate script contents from root module
-    EOF
+    metadata_startup_script = file("${path.module}/../worker.sh")
 
     network_interface {
       network = "default"
